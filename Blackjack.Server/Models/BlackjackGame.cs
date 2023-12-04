@@ -6,30 +6,43 @@ namespace Blackjack.Server.Models
     public class BlackjackGame
     {
         private IGameState currentState;
-
-        public BlackjackGame()
+        private static BlackjackGame instance;
+        public PlayerHand playerHand;
+        public DealerHand dealerHand;
+        public List<ICard> decks;
+        private BlackjackGame()
         {
             currentState = new BettingPhaseState(); // Start with betting phase
+            playerHand = new PlayerHand();
+            dealerHand = new DealerHand();
+            decks = new List<ICard>();
         }
-
+        public static BlackjackGame GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new BlackjackGame();
+            }
+            return instance;
+        }
         public void ChangeState(IGameState newState)
         {
             currentState = newState;
         }
 
-        public void Deal()
+        public void Deal(BlackjackGame game)
         {
-            currentState.Deal();
+            currentState.Deal(game);
         }
 
-        public void Hit()
+        public void Hit(BlackjackGame game)
         {
-            currentState.Hit();
+            currentState.Hit(game);
         }
 
-        public void Stand()
+        public void Stand(BlackjackGame game)
         {
-            currentState.Stand();
+            currentState.Stand(game);
             currentState.ChangeState(this);
         }
     }

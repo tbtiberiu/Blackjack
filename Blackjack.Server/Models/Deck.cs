@@ -33,5 +33,24 @@ namespace Blackjack.Server.Models
         {
             Cards.Remove(card);
         }
+        public void Shuffle()
+        {
+            Random rng = new Random();
+            int n = Cards.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                ICard value = Cards[k];
+                Cards[k] = Cards[n];
+                Cards[n] = value;
+            }
+        }
+        public ICard Draw()
+        {
+            ICard card = Cards[0];
+            Cards.RemoveAt(0);
+            return card;
+        }
     }
 }

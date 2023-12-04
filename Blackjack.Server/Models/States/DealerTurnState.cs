@@ -4,17 +4,27 @@ namespace Blackjack.Server.Models.States
 {
     public class DealerTurnState : IGameState
     {
-        public void Deal()
+        public void Deal(BlackjackGame game)
         {
             Console.WriteLine("Cannot deal during dealer's turn.");
         }
 
-        public void Hit()
+        public void Hit(BlackjackGame game)
         {
-            Console.WriteLine("Dealer hits.");
+            if(game.dealerHand.ShouldHit())
+            {
+                //last deck
+                var card = game.decks[0];
+                game.dealerHand.AddCard((Card)card);
+
+            }
+            else
+            {
+          
+            }
         }
 
-        public void Stand()
+        public void Stand(BlackjackGame game)
         {
             Console.WriteLine("Dealer stands.");
         }

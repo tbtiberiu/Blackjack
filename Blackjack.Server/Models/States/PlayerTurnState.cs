@@ -4,17 +4,17 @@ namespace Blackjack.Server.Models.States
 {
     public class PlayerTurnState : IGameState
     {
-        public void Deal()
+        public void Deal(BlackjackGame game)
         {
             Console.WriteLine("Cannot deal during player's turn.");
         }
 
-        public void Hit()
+        public void Hit(BlackjackGame game)
         {
             Console.WriteLine("Player hits.");
         }
 
-        public void Stand()
+        public void Stand(BlackjackGame game)
         {
             Console.WriteLine("Player stands.");
         }
