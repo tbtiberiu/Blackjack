@@ -1,4 +1,5 @@
 ﻿using Blackjack.Server.Models.Interfaces;
+using System;
 
 namespace Blackjack.Server.Models.States
 {
@@ -7,6 +8,11 @@ namespace Blackjack.Server.Models.States
         public void Deal(BlackjackGame game)
         {
             Console.WriteLine("Dealing cards.");
+            for (int i = 0; i < 2; i++)
+            {
+                game.playerHand.AddCard(game.dealingPack.DrawCard());
+                game.dealerHand.AddCard(game.dealingPack.DrawCard());
+            }
         }
 
         public void Hit(BlackjackGame game)

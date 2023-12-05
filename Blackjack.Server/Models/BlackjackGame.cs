@@ -9,13 +9,13 @@ namespace Blackjack.Server.Models
         private static BlackjackGame instance;
         public PlayerHand playerHand;
         public DealerHand dealerHand;
-        public List<ICard> decks;
+        public DealingPack dealingPack;
         private BlackjackGame()
         {
             currentState = new BettingPhaseState(); // Start with betting phase
             playerHand = new PlayerHand();
             dealerHand = new DealerHand();
-            decks = new List<ICard>();
+            dealingPack = new DealingPack();
         }
         public static BlackjackGame GetInstance()
         {

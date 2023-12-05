@@ -1,4 +1,5 @@
 ﻿using Blackjack.Server.Models.Interfaces;
+using System;
 
 namespace Blackjack.Server.Models.States
 {
@@ -21,31 +22,28 @@ namespace Blackjack.Server.Models.States
 
         public void ChangeState(BlackjackGame game)
         {
-            //check the winner and change the state to the appropriate state
             var playerScore = game.playerHand.GetHandValue();
             var dealerScore = game.dealerHand.GetHandValue();
-            if(playerScore > 21)
+
+            if (playerScore > dealerScore)
             {
-                Console.WriteLine("Player busts. Dealer wins.");
-            }
-            else if(dealerScore > 21)
-            {
-                game.playerHand.NewHand();
-                game.playerHand.SetBet(game.playerHand.GetBet() * 2);
-                Console.WriteLine("Dealer busts. Player wins.");
-            }
-            else if(playerScore > dealerScore)
-            {
-                game.playerHand.NewHand();
-                game.playerHand.SetBet(game.playerHand.GetBet() * 2);
                 Console.WriteLine("Player wins.");
+                game.playerHand.NewHand();
+                game.playerHand.SetBet(game.playerHand.GetBet() * 2);
             }
-            else if(dealerScore > playerScore)
+            else if (dealerScore > playerScore)
             {
                 Console.WriteLine("Dealer wins.");
             }
+            else
+            {
+                Console.WriteLine("It's a tie!");
+                game.playerHand.SetBet(game.playerHand.GetBet()); // Return the bet in case of a tie
+            }
+
             game.dealerHand.NewHand();
             game.ChangeState(new BettingPhaseState());
         }
     }
 }
+    

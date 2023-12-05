@@ -73,7 +73,7 @@ namespace Blackjack.Server.Models
                 return false;
             }
         }
-        public void AddCard(Card card)
+        public void AddCard(ICard card)
         {
             _cards.Add(card);
         }

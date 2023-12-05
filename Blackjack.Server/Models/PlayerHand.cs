@@ -30,7 +30,7 @@ namespace Blackjack.Server.Models
         {
             _bet = bet;
         }
-        public void AddCard(Card card)
+        public void AddCard(ICard card)
         {
             _cards.Add(card);
         }
