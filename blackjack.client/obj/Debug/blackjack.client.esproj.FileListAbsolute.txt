@@ -1,1 +1,2 @@
 C:\Users\tiber\Documents\UNITBV\IS\Blackjack\blackjack.client\obj\Debug\blackjack.client.esproj.CoreCompileInputs.cache
+C:\Facultate\Anu3\Sem1\IS\ProiectFinal\Proiect\blackjack.client\obj\Debug\blackjack.client.esproj.CoreCompileInputs.cache
