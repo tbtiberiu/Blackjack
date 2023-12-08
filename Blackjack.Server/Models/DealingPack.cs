@@ -6,38 +6,44 @@ namespace Blackjack.Server.Models
 {
     public class DealingPack
     {
-        private List<Deck> Decks { get; } = new List<Deck>();
+        private List<ICard> Cards { get; } = [];
 
         public DealingPack()
         {
-            InitializeDecks(7); // Inițializează cele 7 pachete
-            ShuffleDecks();    // Amestecă pachetele
+            InitializeDecks(7);
+            ShuffleCards();
         }
 
         private void InitializeDecks(int numberOfDecks)
         {
             for (int i = 0; i < numberOfDecks; i++)
             {
-                Decks.Add(new Deck());
+                Cards.AddRange(new Deck());
             }
         }
 
-        private void ShuffleDecks()
+        private void ShuffleCards()
         {
-            foreach (Deck deck in Decks)
+            var rng = new Random();
+            int n = Cards.Count;
+            while (n > 1)
             {
-                deck.Shuffle();
+                n--;
+                int k = rng.Next(n + 1);
+                (Cards[n], Cards[k]) = (Cards[k], Cards[n]);
             }
         }
 
         public ICard DrawCard()
         {
-            if (Decks.Count == 0 || Decks[0].GetCount() == 0)
+            if (Cards.Count == 0)
             {
                 throw new InvalidOperationException("No more cards in the dealing pack.");
             }
 
-            return Decks[0].Draw();
+            ICard card = Cards[0];
+            Cards.RemoveAt(0);
+            return card;
         }
     }
 }

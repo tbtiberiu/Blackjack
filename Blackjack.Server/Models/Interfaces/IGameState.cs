@@ -2,9 +2,10 @@
 {
     public interface IGameState
     {
-        void Deal(BlackjackGame game);
-        void Hit(BlackjackGame game);
-        void Stand(BlackjackGame game);
-        void ChangeState(BlackjackGame game);
+        void Bet(int amount);
+        void Deal();
+        void Hit();
+        void Stand();
+        void CheckWinner();
     }
 }

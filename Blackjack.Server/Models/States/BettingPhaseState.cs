@@ -1,33 +1,41 @@
 ﻿using Blackjack.Server.Models.Interfaces;
-using System;
 
 namespace Blackjack.Server.Models.States
 {
     public class BettingPhaseState : IGameState
     {
-        public void Deal(BlackjackGame game)
+        public void Bet(int amount)
         {
+            var game = BlackjackGame.Instance;
+            Console.WriteLine($"Betting {amount}.");
+            game.PlayerHand.BetAmount = amount;
+        }
+
+        public void Deal()
+        {
+            var game = BlackjackGame.Instance;
             Console.WriteLine("Dealing cards.");
             for (int i = 0; i < 2; i++)
             {
-                game.playerHand.AddCard(game.dealingPack.DrawCard());
-                game.dealerHand.AddCard(game.dealingPack.DrawCard());
+                game.PlayerHand.AddCard(game.DrawCard());
+                game.DealerHand.AddCard(game.DrawCard());
             }
+            game.ChangeState(new PlayerTurnState());
         }
 
-        public void Hit(BlackjackGame game)
+        public void Hit()
         {
             Console.WriteLine("Cannot hit during betting phase.");
         }
 
-        public void Stand(BlackjackGame game)
+        public void Stand()
         {
             Console.WriteLine("Cannot stand during betting phase.");
         }
 
-        public void ChangeState(BlackjackGame game)
+        public void CheckWinner()
         {
-            game.ChangeState(new PlayerTurnState());
+            Console.WriteLine("Cannot check winner during betting phase.");
         }
     }
 }

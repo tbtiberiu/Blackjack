@@ -5,45 +5,39 @@ namespace Blackjack.Server.Models
 {
     public class PlayerHand
     {
-        private List<ICard> _cards { get; set; }
-        private int _bet { get; set; }
+        public List<ICard> Cards { get; set; }
+        public int BetAmount {  get; set; }
+        
         public PlayerHand()
         {
-            _cards = new List<ICard>();
-            _bet = 0;
+            Cards = [];
+            BetAmount = 0;
         }
-        public PlayerHand(int bet)
+        public PlayerHand(int betAmount)
         {
-            _bet = bet;
-            _cards = new List<ICard>();
+            Cards = [];
+            BetAmount = betAmount;
         }
-        public PlayerHand(List<ICard> cards, int bet)
+        public PlayerHand(List<ICard> cards, int betAmount)
         {
-            _cards = cards;
-            _bet = bet;
+            Cards = cards;
+            BetAmount = betAmount;
         }
-        public int GetBet()
-        {
-            return _bet;
-        }
-        public void SetBet(int bet)
-        {
-            _bet = bet;
-        }
+
         public void AddCard(ICard card)
         {
-            _cards.Add(card);
+            Cards.Add(card);
         }
         public void NewHand()
         {
-            _cards.Clear();
-            _bet = 0;
+            Cards.Clear();
+            BetAmount = 0;
         }
         public int GetHandValue()
         {
             int handValue = 0;
             int aceCount = 0;
-            foreach (Card card in _cards)
+            foreach (ICard card in Cards)
             {
                 if (card.Rank ==Rank.Ace)
                 {

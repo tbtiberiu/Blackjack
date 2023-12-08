@@ -18,6 +18,7 @@ namespace Blackjack.Server.Models
         {
             Console.WriteLine($"{Rank} of {Suit}");
         }
+
         public int GetValue()
         {
             if (Rank == Rank.Ace)

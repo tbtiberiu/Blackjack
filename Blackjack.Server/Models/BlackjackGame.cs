@@ -3,47 +3,79 @@ using Blackjack.Server.Models.States;
 
 namespace Blackjack.Server.Models
 {
-    public class BlackjackGame
+    public sealed class BlackjackGame
     {
-        private IGameState currentState;
-        private static BlackjackGame instance;
-        public PlayerHand playerHand;
-        public DealerHand dealerHand;
-        public DealingPack dealingPack;
+        private IGameState _currentState;
+        private static BlackjackGame? _instance;
+        private DealingPack _dealingPack;
+
+        public PlayerHand PlayerHand { get; private set; }
+        public DealerHand DealerHand {  get; private set; }
+        public Player Player { get; private set; }
+
         private BlackjackGame()
         {
-            currentState = new BettingPhaseState(); // Start with betting phase
-            playerHand = new PlayerHand();
-            dealerHand = new DealerHand();
-            dealingPack = new DealingPack();
+            _currentState = new BettingPhaseState(); // Start with betting phase
+            _dealingPack = new DealingPack();
+            PlayerHand = new PlayerHand();
+            DealerHand = new DealerHand();
+            Player = new Player("Dragos", 100);
         }
-        public static BlackjackGame GetInstance()
+
+        public static BlackjackGame Instance
         {
-            if (instance == null)
+            get
             {
-                instance = new BlackjackGame();
+                _instance ??= new BlackjackGame();
+                return _instance;
             }
-            return instance;
         }
+        
         public void ChangeState(IGameState newState)
         {
-            currentState = newState;
+            _currentState = newState;
         }
 
-        public void Deal(BlackjackGame game)
+        public void Bet(int amount)
         {
-            currentState.Deal(game);
+            _currentState.Bet(amount);
         }
 
-        public void Hit(BlackjackGame game)
+        public void Deal()
         {
-            currentState.Hit(game);
+            _currentState.Deal();
         }
 
-        public void Stand(BlackjackGame game)
+        public void Hit()
         {
-            currentState.Stand(game);
-            currentState.ChangeState(this);
+            _currentState.Hit();
+        }
+
+        public void Stand()
+        {
+            _currentState.Stand();
+        }
+
+        public void CheckWinner()
+        {
+            _currentState.CheckWinner();
+        }
+
+        public ICard DrawCard()
+        {
+            return _dealingPack.DrawCard();
+        }
+
+        public int GetPlayerBalance()
+        {
+            return Player != null ? Player.Balance : 0;
+        }
+
+        public void StartNewGame()
+        {
+            _currentState = new BettingPhaseState(); // Start with betting phase
+            PlayerHand.NewHand();
+            DealerHand.NewHand();
         }
     }
 }

@@ -5,24 +5,24 @@ namespace Blackjack.Server.Models
 {
     public class DealerHand
     {
-        private List<ICard> _cards { get; set; }
-        private bool _isHidden { get; set; }
+        public List<ICard> Cards {  get; set; }
+        public bool IsHidden { get; set; }
 
         public DealerHand()
         {
-            _cards = new List<ICard>();
-            _isHidden = true;
+            Cards = [];
+            IsHidden = true;
         }
         private DealerHand(List<ICard> cards, bool isHidden)
         {
-            _cards = cards;
-            _isHidden = isHidden;
+            Cards = cards;
+            IsHidden = isHidden;
         }
         public int GetHandValue()
         {
             int handValue = 0;
             int aceCount = 0;
-            foreach (Card card in _cards)
+            foreach (ICard card in Cards)
             {
                 if (card.Rank == Rank.Ace)
                 {
@@ -48,7 +48,7 @@ namespace Blackjack.Server.Models
         }
         public bool HasAce()
         {
-            foreach (Card card in _cards)
+            foreach (Card card in Cards)
             {
                 if (card.Rank == Rank.Ace)
                 {
@@ -75,12 +75,12 @@ namespace Blackjack.Server.Models
         }
         public void AddCard(ICard card)
         {
-            _cards.Add(card);
+            Cards.Add(card);
         }
         public void NewHand()
         {
-            _cards.Clear();
-            _isHidden = true;
+            Cards.Clear();
+            IsHidden = true;
         }
 
     }
