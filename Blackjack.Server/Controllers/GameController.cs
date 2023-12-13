@@ -1,6 +1,4 @@
-﻿using Blackjack.Server.Models;
-using Blackjack.Server.Services;
-using Microsoft.AspNetCore.Http;
+﻿using Blackjack.Server.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blackjack.Server.Controllers
@@ -52,7 +50,8 @@ namespace Blackjack.Server.Controllers
 
         public IActionResult Hit()
         {
-            return Ok(_gameService.Hit());
+            _gameService.Hit();
+            return Ok(_gameService.GetGame());
         }
         [HttpPost("stand")]
         public IActionResult Stand()

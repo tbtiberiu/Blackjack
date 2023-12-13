@@ -27,7 +27,7 @@ namespace Blackjack.Server.Models.States
         {
             Console.WriteLine("Cannot hit during betting phase.");
             return null;
-          }
+        }
 
         public void Stand()
         {
