@@ -8,5 +8,6 @@ namespace Blackjack.Server.Models.Interfaces
         Rank Rank { get; set; }
 
         void Display();
+        int GetValue();
     }
 }

@@ -1,17 +1,39 @@
 ﻿using Blackjack.Server.Models.Interfaces;
+using System;
 
 namespace Blackjack.Server.Models.States
 {
     public class DealerTurnState : IGameState
     {
+        public void Bet(int amount)
+        {
+            Console.WriteLine("Cannot bet during dealer's turn.");
+        }
+
         public void Deal()
         {
             Console.WriteLine("Cannot deal during dealer's turn.");
         }
 
-        public void Hit()
+        public ICard Hit()
         {
-            Console.WriteLine("Dealer hits.");
+            var game = BlackjackGame.Instance;
+            ICard card = game.DrawCard();
+            if (game.DealerHand.ShouldHit())
+            {
+                game.DealerHand.AddCard(card);
+
+                if (game.DealerHand.IsBust())
+                {
+                    game.ChangeState(new GameOverState());
+                }
+            }
+            else
+            {
+                Console.WriteLine("Dealer stands.");
+                game.ChangeState(new GameOverState());
+            }
+            return card;
         }
 
         public void Stand()
@@ -19,10 +41,10 @@ namespace Blackjack.Server.Models.States
             Console.WriteLine("Dealer stands.");
         }
 
-        public void ChangeState(BlackjackGame game)
+        public string CheckWinner()
         {
-            game.ChangeState(new GameOverState());
+            Console.WriteLine("Cannot check winner during dealer's turn.");
+            return "Cannot check winner during dealer' phase.";
         }
     }
-
 }
