@@ -37,9 +37,10 @@ namespace Blackjack.Server.Models
         {
             int handValue = 0;
             int aceCount = 0;
+
             foreach (ICard card in Cards)
             {
-                if (card.Rank ==Rank.Ace)
+                if (card.Rank == Rank.Ace)
                 {
                     aceCount++;
                 }
@@ -47,14 +48,16 @@ namespace Blackjack.Server.Models
                 {
                     handValue += card.GetValue();
                 }
-                for (var i = 0; i < aceCount; i++)
-                {
-                    if (handValue + 11 <= 21)
-                        handValue += 11;
-                    else
-                        handValue += 1;
-                }
             }
+
+            for (var i = 0; i < aceCount; i++)
+            {
+                if (handValue + 11 <= 21)
+                    handValue += 11;
+                else
+                    handValue += 1;
+            }
+
             return handValue;
         }
         public bool IsBust()
