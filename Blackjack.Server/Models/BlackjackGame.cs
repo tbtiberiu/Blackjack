@@ -46,9 +46,9 @@ namespace Blackjack.Server.Models
             _currentState.Deal();
         }
 
-        public void Hit()
+        public ICard Hit()
         {
-            _currentState.Hit();
+           return _currentState.Hit();
         }
 
         public void Stand()
@@ -56,9 +56,9 @@ namespace Blackjack.Server.Models
             _currentState.Stand();
         }
 
-        public void CheckWinner()
+        public string CheckWinner()
         {
-            _currentState.CheckWinner();
+            return _currentState.CheckWinner();
         }
 
         public ICard DrawCard()

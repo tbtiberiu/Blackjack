@@ -4,8 +4,8 @@
     {
         void Bet(int amount);
         void Deal();
-        void Hit();
+        ICard Hit();
         void Stand();
-        void CheckWinner();
+        string CheckWinner();
     }
 }

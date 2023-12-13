@@ -23,19 +23,21 @@ namespace Blackjack.Server.Models.States
             game.ChangeState(new PlayerTurnState());
         }
 
-        public void Hit()
+        public ICard Hit()
         {
             Console.WriteLine("Cannot hit during betting phase.");
-        }
+            return null;
+          }
 
         public void Stand()
         {
             Console.WriteLine("Cannot stand during betting phase.");
         }
 
-        public void CheckWinner()
+        public string CheckWinner()
         {
             Console.WriteLine("Cannot check winner during betting phase.");
+            return "Cannot check winner during betting phase.";
         }
     }
 }

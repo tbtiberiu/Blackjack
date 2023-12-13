@@ -1,4 +1,5 @@
 ﻿using Blackjack.Server.Models;
+using Blackjack.Server.Models.Interfaces;
 
 namespace Blackjack.Server.Services
 {
@@ -31,6 +32,18 @@ namespace Blackjack.Server.Services
         public void DealCards()
         {
             _blackjackGame.Deal();
+        }
+        public ICard Hit()
+        {
+           return _blackjackGame.Hit();
+        }
+        public void Stand()
+        {
+            _blackjackGame.Stand();
+        }
+        public string CheckWinner()
+        {
+            return (_blackjackGame.CheckWinner());
         }
     }
 }

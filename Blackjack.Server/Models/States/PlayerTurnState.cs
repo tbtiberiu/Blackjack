@@ -1,4 +1,5 @@
 ﻿using Blackjack.Server.Models.Interfaces;
+using System.ComponentModel;
 
 namespace Blackjack.Server.Models.States
 {
@@ -14,16 +15,18 @@ namespace Blackjack.Server.Models.States
             Console.WriteLine("Cannot deal during player's turn.");
         }
 
-        public void Hit()
+        public ICard Hit()
         {
             var game = BlackjackGame.Instance;
             Console.WriteLine("Player hits.");
-            game.PlayerHand.AddCard(game.DrawCard());
-
+            ICard card = game.DrawCard();
+            game.PlayerHand.AddCard(card);
+            
             if (game.PlayerHand.IsBust())
             {
                 game.ChangeState(new GameOverState());
             }
+            return card;
         }
 
         public void Stand()
@@ -33,9 +36,10 @@ namespace Blackjack.Server.Models.States
             game.ChangeState(new DealerTurnState());
         }
 
-        public void CheckWinner()
+        public string CheckWinner()
         {
             Console.WriteLine("Cannot check winner during player's turn.");
+            return "Cannot check winner during player's turn.";
         }
     }
 }
