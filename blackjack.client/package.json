@@ -10,18 +10,27 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/roboto": "^5.0.8",
+    "@mui/material": "^5.15.0",
+    "@mui/material-next": "^6.0.0-alpha.113",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.8",
+    "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.6.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-redux": "^9.0.4",
+    "styled-components": "^6.1.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@vitejs/plugin-react": "^4.2.0",
+    "css-loader": "^6.8.1",
     "eslint": "^8.53.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
+    "style-loader": "^3.3.3",
     "typescript-plugin-css-modules": "^5.0.2",
     "vite": "^5.0.0"
   }

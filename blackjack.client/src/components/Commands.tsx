@@ -1,31 +1,41 @@
-import React, { useContext } from "react";
+import React from "react";
 import styles from "./styles/Commands.module.css";
-import { GameContext } from "../contexts/GameContext";
+import { useDispatch } from "react-redux";
+import {
+  startNewGameAsync,
+  dealAsync,
+  hitAsync,
+  standAsync,
+} from "../context/game-slice";
+import { UnknownAction } from "@reduxjs/toolkit";
+
+
 
 const Commands: React.FC = () => {
-  const { startNewGame, deal, hit, stand } = useContext(GameContext);
+  const dispatch = useDispatch();
 
   const handleStartNewGame = () => {
-    startNewGame();
+    dispatch(startNewGameAsync() as unknown as UnknownAction);
   };
 
   const handleDeal = () => {
-    deal();
+    dispatch(dealAsync() as unknown as UnknownAction);
   };
 
   const handleHit = () => {
-    hit();
+    dispatch(hitAsync() as unknown as UnknownAction);
   };
 
   const handleStand = () => {
-    stand();
+    dispatch(standAsync() as unknown as UnknownAction);
   };
+
+  function valuetext(value: number, index: number): string {
+    throw new Error("Function not implemented.");
+  }
 
   return (
     <div className={styles.commands}>
-      <button className={styles.button} onClick={handleStartNewGame}>
-        New Game
-      </button>
       <button className={styles.button} onClick={handleDeal}>
         Deal
       </button>

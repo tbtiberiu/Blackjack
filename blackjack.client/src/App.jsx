@@ -1,13 +1,10 @@
 import "./App.css";
 import Table from "./components/Table";
-import GameContextProvider from "./contexts/GameContext";
-
+import HomePage from "./components/Home";
 
 function App() {
   return (
-    <GameContextProvider>
-      <Table />
-    </GameContextProvider>
+      <HomePage />
   );
 }
 
