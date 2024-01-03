@@ -1,6 +1,4 @@
 ﻿using Blackjack.Server.Models.Interfaces;
-using System;
-using System.Collections.Generic;
 
 namespace Blackjack.Server.Models
 {
@@ -44,6 +42,11 @@ namespace Blackjack.Server.Models
             ICard card = Cards[0];
             Cards.RemoveAt(0);
             return card;
+        }
+
+        public int GetCount()
+        {
+            return Cards.Count;
         }
     }
 }
