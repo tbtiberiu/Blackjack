@@ -49,6 +49,7 @@ namespace Blackjack.Server.Models
 
         public bool IsBust()
         {
+            IsHidden = false;
             return GetHandValue() > 21;
         }
 
@@ -77,6 +78,7 @@ namespace Blackjack.Server.Models
             }
             else
             {
+                IsHidden = false;
                 return false;
             }
         }

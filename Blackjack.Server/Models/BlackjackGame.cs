@@ -46,9 +46,17 @@ namespace Blackjack.Server.Models
             _currentState.Deal();
         }
 
-        public ICard Hit()
+        public void Hit()
         {
-           return _currentState.Hit();
+           _currentState.Hit();
+        }
+
+        public void HitDealer()
+        {
+            do
+            {
+                _currentState.Hit();
+            } while (DealerHand.ShouldHit());
         }
 
         public void Stand()

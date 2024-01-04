@@ -14,10 +14,9 @@ namespace Blackjack.Server.Models.States
             Console.WriteLine("Cannot deal in game over state.");
         }
 
-        public ICard Hit()
+        public void Hit()
         {
             Console.WriteLine("Cannot hit in game over state.");
-            return null;
         }
 
         public void Stand()

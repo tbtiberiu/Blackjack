@@ -1,4 +1,5 @@
-﻿using Blackjack.Server.Models.Interfaces;
+﻿using Blackjack.Server.Models.Factories;
+using Blackjack.Server.Models.Interfaces;
 
 namespace Blackjack.Server.Models
 {
@@ -14,9 +15,12 @@ namespace Blackjack.Server.Models
 
         private void InitializeDecks(int numberOfDecks)
         {
+            var deckFactory = new DeckFactory();
+            var decks = deckFactory.CreateDecks(numberOfDecks);
+
             for (int i = 0; i < numberOfDecks; i++)
             {
-                Cards.AddRange(new Deck());
+                Cards.AddRange(decks[i]);
             }
         }
 

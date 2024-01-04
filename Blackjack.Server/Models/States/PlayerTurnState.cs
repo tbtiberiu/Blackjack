@@ -15,7 +15,7 @@ namespace Blackjack.Server.Models.States
             Console.WriteLine("Cannot deal during player's turn.");
         }
 
-        public ICard Hit()
+        public void Hit()
         {
             var game = BlackjackGame.Instance;
             Console.WriteLine("Player hits.");
@@ -26,7 +26,6 @@ namespace Blackjack.Server.Models.States
             {
                 game.ChangeState(new GameOverState());
             }
-            return card;
         }
 
         public void Stand()

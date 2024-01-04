@@ -23,10 +23,9 @@ namespace Blackjack.Server.Models.States
             game.ChangeState(new PlayerTurnState());
         }
 
-        public ICard Hit()
+        public void Hit()
         {
             Console.WriteLine("Cannot hit during betting phase.");
-            return null;
         }
 
         public void Stand()

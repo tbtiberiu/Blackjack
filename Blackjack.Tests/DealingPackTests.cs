@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Blackjack.Server.Models;
+﻿using Blackjack.Server.Models;
 using Blackjack.Server.Models.Interfaces;
 
 namespace Blackjack.Server.Tests.Models

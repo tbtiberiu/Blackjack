@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Blackjack.Server.Models;
+﻿using Blackjack.Server.Models;
 using Blackjack.Server.Models.Enums;
 using Blackjack.Server.Models.Interfaces;
 

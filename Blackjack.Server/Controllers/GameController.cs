@@ -46,19 +46,21 @@ namespace Blackjack.Server.Controllers
             _gameService.DealCards();
             return Ok(_gameService.GetGame());
         }
-        [HttpPost("hit")]
 
+        [HttpPost("hit")]
         public IActionResult Hit()
         {
             _gameService.Hit();
             return Ok(_gameService.GetGame());
         }
+
         [HttpPost("stand")]
         public IActionResult Stand()
         {
             _gameService.Stand();
-            return Ok("Player stands");
+            return Ok(_gameService.GetGame());
         }
+
         [HttpPost("check-winner")]
         public IActionResult CheckWinner()
         {
