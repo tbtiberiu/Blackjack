@@ -18,6 +18,7 @@ namespace Blackjack.Server.Models
             Cards = [];
             BetAmount = betAmount;
         }
+
         public PlayerHand(List<ICard> cards, int betAmount)
         {
             Cards = cards;
@@ -28,11 +29,13 @@ namespace Blackjack.Server.Models
         {
             Cards.Add(card);
         }
+
         public void NewHand()
         {
             Cards.Clear();
             BetAmount = 0;
         }
+
         public int GetHandValue()
         {
             int handValue = 0;
@@ -60,6 +63,7 @@ namespace Blackjack.Server.Models
 
             return handValue;
         }
+
         public bool IsBust()
         {
             return GetHandValue() > 21;

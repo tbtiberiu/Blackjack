@@ -13,11 +13,13 @@ namespace Blackjack.Server.Models
             Cards = [];
             IsHidden = true;
         }
+
         private DealerHand(List<ICard> cards, bool isHidden)
         {
             Cards = cards;
             IsHidden = isHidden;
         }
+
         public int GetHandValue()
         {
             int handValue = 0;
@@ -32,20 +34,24 @@ namespace Blackjack.Server.Models
                 {
                     handValue += card.GetValue();
                 }
-                for (var i = 0; i < aceCount; i++)
-                {
-                    if (handValue + 11 <= 21)
-                        handValue += 11;
-                    else
-                        handValue += 1;
-                }
             }
+
+            for (var i = 0; i < aceCount; i++)
+            {
+                if (handValue + 11 <= 21)
+                    handValue += 11;
+                else
+                    handValue += 1;
+            }
+
             return handValue;
         }
+
         public bool IsBust()
         {
             return GetHandValue() > 21;
         }
+
         public bool HasAce()
         {
             foreach (Card card in Cards)
@@ -57,6 +63,7 @@ namespace Blackjack.Server.Models
             }
             return false;
         }
+
         public bool ShouldHit()
         {
             var handValue = GetHandValue();
@@ -73,10 +80,12 @@ namespace Blackjack.Server.Models
                 return false;
             }
         }
+
         public void AddCard(ICard card)
         {
             Cards.Add(card);
         }
+
         public void NewHand()
         {
             Cards.Clear();
