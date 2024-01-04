@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const gameSlice = createSlice({
-  name: 'game',
+  name: "game",
   initialState: {
     gameState: {
       playerHand: {
@@ -13,16 +13,21 @@ export const gameSlice = createSlice({
       },
       player: {},
     },
+    winner: {},
   },
   reducers: {
     setGameState: (state, action) => {
       state.gameState = action.payload;
     },
+    setWinner: (state, action) => {
+      state.winner = action.payload;
+    },
   },
 });
 
-export const { setGameState } = gameSlice.actions;
+export const { setGameState, setWinner } = gameSlice.actions;
 export const selectGameState = (state) => state.game.gameState;
+export const selectWinnerState = (state) => state.game.winner;
 
 export const startNewGameAsync = () => async (dispatch) => {
   const baseUrl = "https://localhost:7147/api/Game";
@@ -38,8 +43,6 @@ export const dealAsync = () => async (dispatch) => {
   const response = await axios.post(`${baseUrl}/deal-cards`);
   const data = response.data;
   dispatch(setGameState(data));
-  console.log("deal: ");
-  console.log(data);
 };
 
 export const hitAsync = () => async (dispatch) => {
@@ -47,8 +50,6 @@ export const hitAsync = () => async (dispatch) => {
   const response = await axios.post(`${baseUrl}/hit`);
   const data = response.data;
   dispatch(setGameState(data));
-  console.log("hit: ");
-  console.log(data);
 };
 
 export const standAsync = () => async (dispatch) => {
@@ -56,11 +57,9 @@ export const standAsync = () => async (dispatch) => {
   const response = await axios.post(`${baseUrl}/stand`);
   const data = response.data;
   dispatch(setGameState(data));
-  console.log("stand: ");
-  console.log(data);
 };
 
-export const betAsync = () => async (dispatch) => {
+export const betAsync = () => async () => {
   const baseUrl = "https://localhost:7147/api/Game";
   const response = await axios.post(`${baseUrl}/bet`);
   const data = response.data;
@@ -72,8 +71,7 @@ export const checkWinnerAsync = () => async (dispatch) => {
   const baseUrl = "https://localhost:7147/api/Game";
   const response = await axios.post(`${baseUrl}/check-winner`);
   const data = response.data;
-  console.log("checkWinner: ");
-  console.log(data);
+  dispatch(setWinner(data));
 };
 
 export default gameSlice.reducer;

@@ -1,22 +1,15 @@
 import React from "react";
+import { useState } from "react";
 import styles from "./styles/Commands.module.css";
-import { useDispatch } from "react-redux";
-import {
-  startNewGameAsync,
-  dealAsync,
-  hitAsync,
-  standAsync,
-} from "../context/game-slice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectGameState } from "../context/game-slice";
+import { dealAsync, hitAsync, standAsync } from "../context/game-slice";
 import { UnknownAction } from "@reduxjs/toolkit";
 
-
-
 const Commands: React.FC = () => {
+  const [inputValue, setInputValue] = useState();
   const dispatch = useDispatch();
-
-  const handleStartNewGame = () => {
-    dispatch(startNewGameAsync() as unknown as UnknownAction);
-  };
+  const gameState = useSelector(selectGameState);
 
   const handleDeal = () => {
     dispatch(dealAsync() as unknown as UnknownAction);
@@ -30,21 +23,41 @@ const Commands: React.FC = () => {
     dispatch(standAsync() as unknown as UnknownAction);
   };
 
-  function valuetext(value: number, index: number): string {
-    throw new Error("Function not implemented.");
-  }
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
 
   return (
     <div className={styles.commands}>
-      <button className={styles.button} onClick={handleDeal}>
-        Deal
-      </button>
-      <button className={styles.button} onClick={handleHit}>
-        Hit
-      </button>
-      <button className={styles.button} onClick={handleStand}>
-        Stand
-      </button>
+      <div className={styles.bet}>
+        <div className={styles.amountContainer}>
+          <div className={styles.amountBox}>
+            <p className={styles.balanceText}>Balance:</p>
+            <p className={styles.amount}>
+              {gameState.player && <div>{gameState.player.balance}</div>}
+            </p>
+          </div>
+        </div>
+        <input
+          type="number"
+          max={gameState.player.balance}
+          min={10}
+          className={styles.input}
+          onChange={handleInputChange}
+          value={inputValue}
+        />
+        <button className={styles.button} onClick={handleDeal}>
+          Bet
+        </button>
+      </div>
+      <div className={styles.hitstand}>
+        <button className={styles.button} onClick={handleHit}>
+          Hit
+        </button>
+        <button className={styles.button} onClick={handleStand}>
+          Stand
+        </button>
+      </div>
     </div>
   );
 };
