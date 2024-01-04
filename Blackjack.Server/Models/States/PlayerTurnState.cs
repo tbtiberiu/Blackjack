@@ -32,8 +32,8 @@ namespace Blackjack.Server.Models.States
         {
             var game = BlackjackGame.Instance;
             Console.WriteLine("Player stands.");
-            game.HitDealer();
             game.ChangeState(new DealerTurnState());
+            game.HitDealer();
         }
 
         public string CheckWinner()

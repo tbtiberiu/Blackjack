@@ -53,7 +53,7 @@ namespace Blackjack.Server.Models
 
         public void HitDealer()
         {
-            while (_currentState is DealerTurnState)
+            while(_currentState is DealerTurnState)
             {
                 _currentState.Hit();
             }
