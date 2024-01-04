@@ -33,15 +33,17 @@ namespace Blackjack.Server.Services
         {
             _blackjackGame.Deal();
         }
+        
         public void Hit()
         {
            _blackjackGame.Hit();
         }
+        
         public void Stand()
         {
             _blackjackGame.Stand();
-            _blackjackGame.HitDealer();
         }
+
         public string CheckWinner()
         {
             return (_blackjackGame.CheckWinner());

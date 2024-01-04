@@ -7,7 +7,7 @@ import { dealAsync, hitAsync, standAsync } from "../context/game-slice";
 import { UnknownAction } from "@reduxjs/toolkit";
 
 const Commands: React.FC = () => {
-  const [inputValue, setInputValue] = useState();
+  const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
   const gameState = useSelector(selectGameState);
 
@@ -33,9 +33,9 @@ const Commands: React.FC = () => {
         <div className={styles.amountContainer}>
           <div className={styles.amountBox}>
             <p className={styles.balanceText}>Balance:</p>
-            <p className={styles.amount}>
+            <div className={styles.amount}>
               {gameState.player && <div>{gameState.player.balance}</div>}
-            </p>
+            </div>
           </div>
         </div>
         <input

@@ -12,7 +12,6 @@ import {
   startNewGameAsync,
 } from "../context/game-slice";
 import { UnknownAction } from "@reduxjs/toolkit";
-import { searchForWorkspaceRoot } from "vite";
 
 const Table: React.FC = () => {
   const dispatch = useDispatch();
@@ -42,7 +41,7 @@ const Table: React.FC = () => {
         );
 
         if (translatedCards.length > 0) {
-         translatedCards[0] = { ...translatedCards[0], hidden: true };
+          translatedCards[0] = { ...translatedCards[0], hidden: true };
         }
 
         setDealerHand(translatedCards);
@@ -52,10 +51,16 @@ const Table: React.FC = () => {
 
   useEffect(() => {
     dispatch(startNewGameAsync() as unknown as UnknownAction);
-  }, [winnerState === "Dealer wins" || winnerState === "Player wins" || winnerState === "Tie" ]);
+  }, [
+    winnerState === "Dealer wins" ||
+      winnerState === "Player wins" ||
+      winnerState === "Tie",
+  ]);
 
   const showMessage =
-    winnerState === "Dealer wins" || winnerState === "Player wins" || winnerState === "Tie";
+    winnerState === "Dealer wins" ||
+    winnerState === "Player wins" ||
+    winnerState === "Tie";
 
   return (
     <>

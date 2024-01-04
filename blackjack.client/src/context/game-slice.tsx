@@ -11,7 +11,9 @@ export const gameSlice = createSlice({
       dealerHand: {
         cards: [],
       },
-      player: {},
+      player: {
+        balance: 0,
+      },
     },
     winner: {},
   },

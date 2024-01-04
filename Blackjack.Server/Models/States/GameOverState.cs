@@ -57,7 +57,7 @@ namespace Blackjack.Server.Models.States
             else
             {
                 Console.WriteLine("It's a tie!");
-                return "It's a tie!";
+                return "Tie";
             }
         }
     }
