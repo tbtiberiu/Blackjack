@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { UnknownAction, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const gameSlice = createSlice({
@@ -36,8 +36,6 @@ export const startNewGameAsync = () => async (dispatch) => {
   const response = await axios.post(`${baseUrl}/start-new-game`);
   const data = response.data;
   dispatch(setGameState(data));
-  console.log("startNewGame: ");
-  console.log(data);
 };
 
 export const dealAsync = () => async (dispatch) => {
@@ -58,11 +56,11 @@ export const standAsync = () => async (dispatch) => {
   dispatch(setGameState(data));
 };
 
-export const betAsync = (amount: number) => async () => {
+export const betAsync = (amount: number) => async (dispatch) => {
   const response = await axios.post(`${baseUrl}/bet?amount=${amount}`);
-  const data = response.data;
-  console.log("bet: ");
-  console.log(data);
+  if (response.status === 200) {
+    dispatch(dealAsync() as unknown as UnknownAction);
+  }
 };
 
 export const checkWinnerAsync = () => async (dispatch) => {
