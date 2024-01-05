@@ -7,7 +7,7 @@ namespace Blackjack.Server.Models
     {
         private IGameState _currentState;
         private static BlackjackGame? _instance;
-        private DealingPack _dealingPack;
+        private readonly DealingPack _dealingPack;
 
         public PlayerHand PlayerHand { get; private set; }
         public DealerHand DealerHand {  get; private set; }

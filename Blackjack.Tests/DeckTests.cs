@@ -5,6 +5,7 @@ using System.Linq;
 using Blackjack.Server.Models.Enums;
 using Blackjack.Server.Models.Interfaces;
 using Blackjack.Server.Models;
+using Blackjack.Server.Models.Factories;
 
 namespace Blackjack.Server.Tests.Models
 {
@@ -15,7 +16,8 @@ namespace Blackjack.Server.Tests.Models
         public void Deck_Initialization_ShouldCreateCorrectNumberOfCards()
         {
             // Arrange
-            var deck = new Deck();
+            var deckFactory = new DeckFactory();
+            var deck = deckFactory.CreateDeck();
 
             // Act
             int expectedCardCount = Enum.GetValues(typeof(Suit)).Length * Enum.GetValues(typeof(Rank)).Length;
@@ -28,7 +30,8 @@ namespace Blackjack.Server.Tests.Models
         public void Deck_Shuffle_ShouldChangeOrderOfCards()
         {
             // Arrange
-            Deck originalDeck = new Deck();
+            var deckFactory = new DeckFactory();
+            var originalDeck = deckFactory.CreateDeck();
             Deck shuffledDeck = new Deck(originalDeck.ToList());
 
             // Act
@@ -42,7 +45,8 @@ namespace Blackjack.Server.Tests.Models
         public void Deck_AddCard_ShouldIncreaseCardCount()
         {
             // Arrange
-            Deck deck = new Deck();
+            var deckFactory = new DeckFactory();
+            var deck = deckFactory.CreateDeck();
             ICard card = new Card(Suit.Clubs, Rank.Ace);
 
             // Act
@@ -56,7 +60,8 @@ namespace Blackjack.Server.Tests.Models
         public void Deck_RemoveCard_ShouldDecreaseCardCount()
         {
             // Arrange
-            Deck deck = new Deck();
+            var deckFactory = new DeckFactory();
+            var deck = deckFactory.CreateDeck();
             ICard card = deck.First();
 
             // Act
@@ -70,7 +75,8 @@ namespace Blackjack.Server.Tests.Models
         public void Deck_GetEnumerator_ShouldReturnEnumerator()
         {
             // Arrange
-            Deck deck = new Deck();
+            var deckFactory = new DeckFactory();
+            var deck = deckFactory.CreateDeck();
 
             // Act
             IEnumerator<ICard> enumerator = deck.GetEnumerator();
@@ -83,7 +89,8 @@ namespace Blackjack.Server.Tests.Models
         public void Deck_GetEnumerator_ShouldReturnEnumeratorWithCorrectCards()
         {
             // Arrange
-            Deck deck = new Deck();
+            var deckFactory = new DeckFactory();
+            var deck = deckFactory.CreateDeck();
 
             // Act
             IEnumerator<ICard> enumerator = deck.GetEnumerator();

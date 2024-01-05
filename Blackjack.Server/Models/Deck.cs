@@ -6,27 +6,15 @@ namespace Blackjack.Server.Models;
 
 public class Deck : IEnumerable<ICard>
 {
-    private List<ICard> Cards { get; } = new List<ICard>();
+    private List<ICard> Cards { get; } = [];
 
     public Deck()
     {
-        InitializeDeck();
     }
 
     public Deck(List<ICard> cards)
     {
         Cards = cards;
-    }
-
-    private void InitializeDeck()
-    {
-        foreach (Suit suit in Enum.GetValues(typeof(Suit)))
-        {
-            foreach (Rank rank in Enum.GetValues(typeof(Rank)))
-            {
-                AddCard(new Card(suit, rank));
-            }
-        }
     }
 
     public IEnumerator<ICard> GetEnumerator()

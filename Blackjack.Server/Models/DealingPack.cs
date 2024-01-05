@@ -16,11 +16,10 @@ namespace Blackjack.Server.Models
         private void InitializeDecks(int numberOfDecks)
         {
             var deckFactory = new DeckFactory();
-            var decks = deckFactory.CreateDecks(numberOfDecks);
 
             for (int i = 0; i < numberOfDecks; i++)
             {
-                Cards.AddRange(decks[i]);
+                Cards.AddRange(deckFactory.CreateDeck());
             }
         }
 

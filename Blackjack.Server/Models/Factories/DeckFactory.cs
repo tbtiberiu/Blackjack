@@ -11,18 +11,11 @@ namespace Blackjack.Server.Models.Factories
         {
             var deck = new Deck();
 
-            Suit[] suits = [Suit.Spades, Suit.Hearts, Suit.Diamonds, Suit.Clubs];
-            Rank[] ranks = [ Rank.Two, Rank.Three, Rank.Four, Rank.Five, 
-                             Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, 
-                             Rank.Ten, Rank.Ace, Rank.Jack, Rank.Queen, 
-                             Rank.King ];
-            
-            foreach (var suit in suits)
+            foreach (Suit suit in Enum.GetValues(typeof(Suit)))
             {
-                foreach (var rank in ranks)
+                foreach (Rank rank in Enum.GetValues(typeof(Rank)))
                 {
-                    ICard card = _cardFactory.CreateCard(suit, rank);
-                    deck.AddCard(card);
+                    deck.AddCard(new Card(suit, rank));
                 }
             }
 
