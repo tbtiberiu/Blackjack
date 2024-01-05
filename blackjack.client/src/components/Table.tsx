@@ -41,21 +41,16 @@ const Table: React.FC = () => {
         );
 
         if (translatedCards.length > 0) {
-          translatedCards[0] = { ...translatedCards[0], hidden: true };
+          translatedCards[0] = {
+            ...translatedCards[0],
+            hidden: gameState.dealerHand.isHidden,
+          };
         }
 
         setDealerHand(translatedCards);
       }
     }
   };
-
-  useEffect(() => {
-    dispatch(startNewGameAsync() as unknown as UnknownAction);
-  }, [
-    winnerState === "Dealer wins" ||
-      winnerState === "Player wins" ||
-      winnerState === "Tie",
-  ]);
 
   const showMessage =
     winnerState === "Dealer wins" ||
@@ -73,7 +68,7 @@ const Table: React.FC = () => {
         <div className={styles.deck}></div>
       </div>
       <div className={styles.commands}>
-        <Commands />
+        <Commands isGameOver={showMessage} />
       </div>
     </>
   );

@@ -6,7 +6,8 @@ namespace Blackjack.Server.Models
     public sealed class BlackjackGame
     {
         private IGameState _currentState;
-        private static BlackjackGame? _instance;
+        private static volatile BlackjackGame _instance;
+        private static readonly object InstanceLoker = new Object();
         private readonly DealingPack _dealingPack;
 
         public PlayerHand PlayerHand { get; private set; }
@@ -26,7 +27,14 @@ namespace Blackjack.Server.Models
         {
             get
             {
-                _instance ??= new BlackjackGame();
+                if (_instance == null)
+                {
+                    lock (InstanceLoker)
+                    {
+                        _instance ??= new BlackjackGame();
+                    }
+                }
+
                 return _instance;
             }
         }

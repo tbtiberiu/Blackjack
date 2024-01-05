@@ -2,16 +2,23 @@ import React from "react";
 import { useState } from "react";
 import styles from "./styles/Commands.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { selectGameState } from "../context/game-slice";
-import { dealAsync, hitAsync, standAsync } from "../context/game-slice";
+import { betAsync, selectGameState } from "../context/game-slice";
+import {
+  dealAsync,
+  hitAsync,
+  standAsync,
+  startNewGameAsync,
+} from "../context/game-slice";
 import { UnknownAction } from "@reduxjs/toolkit";
+import { CommandsProps } from "../types/CommandsProps";
 
-const Commands: React.FC = () => {
+const Commands: React.FC<CommandsProps> = ({ isGameOver }) => {
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
   const gameState = useSelector(selectGameState);
 
   const handleDeal = () => {
+    dispatch(betAsync(Number(inputValue)) as unknown as UnknownAction);
     dispatch(dealAsync() as unknown as UnknownAction);
   };
 
@@ -21,6 +28,10 @@ const Commands: React.FC = () => {
 
   const handleStand = () => {
     dispatch(standAsync() as unknown as UnknownAction);
+  };
+
+  const handleNewGame = () => {
+    dispatch(startNewGameAsync() as unknown as UnknownAction);
   };
 
   const handleInputChange = (e) => {
@@ -46,17 +57,29 @@ const Commands: React.FC = () => {
           onChange={handleInputChange}
           value={inputValue}
         />
-        <button className={styles.button} onClick={handleDeal}>
+        <button
+          className={styles.button}
+          onClick={handleDeal}
+          disabled={isGameOver}
+        >
           Bet
         </button>
       </div>
       <div className={styles.hitstand}>
-        <button className={styles.button} onClick={handleHit}>
-          Hit
-        </button>
-        <button className={styles.button} onClick={handleStand}>
-          Stand
-        </button>
+        {isGameOver ? (
+          <button className={styles.button} onClick={handleNewGame}>
+            New Game
+          </button>
+        ) : (
+          <>
+            <button className={styles.button} onClick={handleHit}>
+              Hit
+            </button>
+            <button className={styles.button} onClick={handleStand}>
+              Stand
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
