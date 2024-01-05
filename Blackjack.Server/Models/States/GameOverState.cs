@@ -29,11 +29,7 @@ namespace Blackjack.Server.Models.States
             var game = BlackjackGame.Instance;
             var playerScore = game.PlayerHand.GetHandValue();
             var dealerScore = game.DealerHand.GetHandValue();
-            
-            Console.WriteLine($"Player score: {playerScore}");
-            Console.WriteLine($"Dealer score: {dealerScore}");
-            Console.WriteLine($"Player balance: {game.Player.Balance}");
-            Console.WriteLine($"Player bet: {game.PlayerHand.BetAmount}");
+
             if (game.PlayerHand.IsBust())
             {
                 Console.WriteLine("Player busts. Dealer wins.");
