@@ -29,7 +29,7 @@ const Commands: React.FC<CommandsProps> = ({ isGameOver }) => {
     dispatch(standAsync() as unknown as UnknownAction);
   };
 
-  const handleNewGame = () => {
+  const handleNewRound = () => {
     dispatch(startNewGameAsync() as unknown as UnknownAction);
   };
 
@@ -66,8 +66,8 @@ const Commands: React.FC<CommandsProps> = ({ isGameOver }) => {
       </div>
       <div className={styles.hitstand}>
         {isGameOver ? (
-          <button className={styles.button} onClick={handleNewGame}>
-            New Game
+          <button className={styles.button} onClick={handleNewRound}>
+            New Round
           </button>
         ) : (
           <>
