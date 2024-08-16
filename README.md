@@ -109,18 +109,18 @@ The back-end handles all game logic and provides multiple endpoints for interact
 
 ### Singleton with Double Locking
 
-- **Purpose**: Ensures that there is only one instance of the `BlackjackGame` class throughout the application, providing global access to this instance.
-- **Implementation**: The `Singleton` pattern with double locking ensures thread safety and efficient access during game execution.
+**Purpose**: Ensures that there is only one instance of the `BlackjackGame` class throughout the application, providing global access to this instance.
+**Implementation**: The `Singleton` pattern with double locking ensures thread safety and efficient access during game execution.
 
 ### Factory Design Pattern
 
-- **Purpose**: Centralizes the creation of `Card` and `Deck` objects.
-- **Implementation**: The `Factory` pattern allows for easy management and extension of card and deck creation, providing a flexible structure that can be expanded to include additional card types or decks in the future.
+**Purpose**: Centralizes the creation of `Card` and `Deck` objects.
+**Implementation**: The `Factory` pattern allows for easy management and extension of card and deck creation, providing a flexible structure that can be expanded to include additional card types or decks in the future.
 
 ### State Design Pattern
 
-- **Purpose**: Manages the transitions between different game phases such as `BettingPhase`, `PlayerTurn`, `DealerTurn`, and `GameOver`.
-- **Implementation**: The `State` pattern enables the game to change its behavior dynamically based on its current state, making the game flow more manageable and scalable.
+**Purpose**: Manages the transitions between different game phases such as `BettingPhase`, `PlayerTurn`, `DealerTurn`, and `GameOver`.
+**Implementation**: The `State` pattern enables the game to change its behavior dynamically based on its current state, making the game flow more manageable and scalable.
 
 ## Testing
 
