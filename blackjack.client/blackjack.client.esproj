@@ -10,6 +10,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\components\" />
-    <Folder Include="src\pages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptConfiguration Remove="src\pages\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\pages\**" />
   </ItemGroup>
 </Project>

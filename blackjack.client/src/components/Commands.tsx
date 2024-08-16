@@ -1,19 +1,19 @@
-import React from "react";
-import { useState } from "react";
-import styles from "./styles/Commands.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { useState } from 'react';
+import styles from './styles/Commands.module.css';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   betAsync,
   hitAsync,
   standAsync,
   startNewGameAsync,
   selectGameState,
-} from "../context/game-slice";
-import { UnknownAction } from "@reduxjs/toolkit";
-import { CommandsProps } from "../types/CommandsProps";
+} from '../context/game-slice';
+import { UnknownAction } from '@reduxjs/toolkit';
+import { CommandsProps } from '../types/CommandsProps';
 
 const Commands: React.FC<CommandsProps> = ({ isGameOver }) => {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
   const dispatch = useDispatch();
   const gameState = useSelector(selectGameState);
 

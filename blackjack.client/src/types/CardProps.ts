@@ -3,4 +3,3 @@ export type CardProps = {
   suit: string;
   hidden: boolean;
 };
-

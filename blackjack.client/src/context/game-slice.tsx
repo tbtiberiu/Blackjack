@@ -1,8 +1,8 @@
-import { UnknownAction, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { UnknownAction, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 export const gameSlice = createSlice({
-  name: "game",
+  name: 'game',
   initialState: {
     gameState: {
       playerHand: {

@@ -1,10 +1,10 @@
-import React from "react";
-import styles from "./styles/Home.module.css";
-import { useDispatch } from "react-redux";
-import Table from "./Table";
-import { startNewGameAsync } from "../context/game-slice";
-import { useState } from "react";
-import { UnknownAction } from "@reduxjs/toolkit";
+import React from 'react';
+import styles from './styles/Home.module.css';
+import { useDispatch } from 'react-redux';
+import Table from './Table';
+import { startNewGameAsync } from '../context/game-slice';
+import { useState } from 'react';
+import { UnknownAction } from '@reduxjs/toolkit';
 
 const HomePage = () => {
   const dispatch = useDispatch();

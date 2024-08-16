@@ -7,7 +7,7 @@ namespace Blackjack.Server.Models
     {
         private IGameState _currentState;
         private static volatile BlackjackGame _instance;
-        private static readonly object InstanceLoker = new Object();
+        private static readonly object InstanceLoker = new();
         private readonly DealingPack _dealingPack;
 
         public PlayerHand PlayerHand { get; private set; }

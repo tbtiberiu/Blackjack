@@ -1,5 +1,4 @@
 ﻿using Blackjack.Server.Models;
-using Blackjack.Server.Models.Interfaces;
 
 namespace Blackjack.Server.Services
 {

@@ -1,11 +1,10 @@
-import React from "react";
-import styles from "./styles/Card.module.css";
-import {CardProps} from "../types/CardProps";
-
+import React from 'react';
+import styles from './styles/Card.module.css';
+import { CardProps } from '../types/CardProps';
 
 const Card: React.FC<CardProps> = ({ value, suit, hidden }) => {
   const getColor = () => {
-    if (suit === "♦" || suit === "♥") {
+    if (suit === '♦' || suit === '♥') {
       return styles.red;
     }
     return styles.black;

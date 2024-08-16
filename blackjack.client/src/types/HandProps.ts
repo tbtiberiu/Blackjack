@@ -1,7 +1,5 @@
-import {CardProps} from "./CardProps";
+import { CardProps } from './CardProps';
 
 export type HandProps = {
   cards: CardProps[];
 };
-
- 

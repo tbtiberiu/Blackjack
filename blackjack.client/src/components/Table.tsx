@@ -1,17 +1,16 @@
-import React from "react";
-import styles from "./styles/Table.module.css";
-import { useState, useEffect } from "react";
-import translateCard from "../utils/translateCards";
-import Hand from "./Hand";
-import Commands from "./Commands";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import styles from './styles/Table.module.css';
+import { useState, useEffect } from 'react';
+import translateCard from '../utils/translateCards';
+import Hand from './Hand';
+import Commands from './Commands';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   checkWinnerAsync,
   selectGameState,
   selectWinnerState,
-  startNewGameAsync,
-} from "../context/game-slice";
-import { UnknownAction } from "@reduxjs/toolkit";
+} from '../context/game-slice';
+import { UnknownAction } from '@reduxjs/toolkit';
 
 const Table: React.FC = () => {
   const dispatch = useDispatch();
@@ -23,7 +22,7 @@ const Table: React.FC = () => {
   useEffect(() => {
     handleHands();
     dispatch(checkWinnerAsync() as unknown as UnknownAction);
-    console.log("checkWinner from table :", winnerState);
+    console.log('checkWinner from table :', winnerState);
   }, [gameState]);
 
   const handleHands = () => {
@@ -53,19 +52,21 @@ const Table: React.FC = () => {
   };
 
   const showMessage =
-    winnerState === "Dealer wins" ||
-    winnerState === "Player wins" ||
-    winnerState === "Tie";
+    winnerState === 'Dealer wins' ||
+    winnerState === 'Player wins' ||
+    winnerState === 'Tie';
 
   return (
     <>
-      {showMessage && <div className={styles.winner}> {winnerState} </div>}
-      <div className={styles.table}>
-        <div className={styles.hands}>
-          <Hand cards={dealerHand} />
-          <Hand cards={playerHand} />
+      <div className={styles.container}>
+        {showMessage && <div className={styles.winner}> {winnerState} </div>}
+        <div className={styles.table}>
+          <div className={styles.hands}>
+            <Hand cards={dealerHand} />
+            <Hand cards={playerHand} />
+          </div>
+          <div className={styles.deck}></div>
         </div>
-        <div className={styles.deck}></div>
       </div>
       <div className={styles.commands}>
         <Commands isGameOver={showMessage} />

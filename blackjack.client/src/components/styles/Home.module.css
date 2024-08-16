@@ -4,7 +4,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  overflow-x: hidden;
 }
 
 .container {
@@ -12,23 +12,16 @@ body {
 }
 
 .title {
-  font-size: 2em; 
-    margin-bottom: 20px;
-    background-color: #0808085e;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-    font-family: "Roboto", sans-serif;
-    font-size: 5rem;
-    color: #000;
-    text-align: center;
-    transition: all 0.3s ease-in-out;
+  font-size: 2em;
+  background-color: #0808085e;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 5rem;
+  color: #000;
+  transition: all 0.3s ease-in-out;
 }
 
 .button {
-  margin-top: 400px; 
-  font-size: 1.5em; 
+  margin-top: 400px;
+  font-size: 1.5em;
 }

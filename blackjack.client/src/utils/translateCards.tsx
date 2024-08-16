@@ -1,4 +1,4 @@
-import { Suits } from "../enums/suits";
+import { Suits } from '../enums/suits';
 const translateCard = (card: { suit: number; rank: number }) => {
   let cardValue = card.rank;
   let cardSuit = card.suit;
@@ -16,13 +16,13 @@ const translateCard = (card: { suit: number; rank: number }) => {
   }
 
   if (cardValue === 11) {
-    formattedCardValue = "A";
+    formattedCardValue = 'A';
   } else if (cardValue === 12) {
-    formattedCardValue = "J";
+    formattedCardValue = 'J';
   } else if (cardValue === 13) {
-    formattedCardValue = "Q";
+    formattedCardValue = 'Q';
   } else if (cardValue === 14) {
-    formattedCardValue = "K";
+    formattedCardValue = 'K';
   } else {
     formattedCardValue = cardValue.toString();
   }
